@@ -127,3 +127,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Default files
+.vscode
+notes.txt
+pygame_methods.txt
