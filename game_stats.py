@@ -1,3 +1,6 @@
+from pathlib import Path
+
+
 class GameStats:
     def __init__(self, ai_game):
         """
@@ -7,9 +10,17 @@ class GameStats:
         self.reset_stats()
 
         # High scores should never be reset.
-        self.high_score = 0
+        self.high_score = self._obtain_high_score()
 
     
+    def _obtain_high_score(self):
+        """
+        Obtains the current high score.
+        """
+        score_path = Path("high_score.txt")
+        return int(score_path.read_text().rstrip())
+
+
     def reset_stats(self):
         """
         Initializes statistics that can change during the game.

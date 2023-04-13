@@ -1,5 +1,6 @@
 import sys
 from time import sleep
+from pathlib import Path
 
 import pygame
 from settings import Settings
@@ -108,11 +109,20 @@ class AlienInvasion:
             self.ship.moving_left = True
         elif event.key == pygame.K_q:
             # Quits the game when the 'q' button is pressed.
+            self._write_high_score(self.stats.high_score)
             sys.exit()
         elif event.key == pygame.K_SPACE:
             self._fire_bullet()
         elif event.key == pygame.K_p:
             self._start_game()
+
+    
+    def _write_high_score(self, high_score):
+        """
+        Writes the new high score to a file to use for later.
+        """
+        score_path = Path("high_score.txt")
+        score_path.write_text(str(high_score))
 
 
     def _start_game(self):
